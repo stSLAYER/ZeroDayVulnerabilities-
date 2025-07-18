@@ -1,0 +1,40 @@
+# Authentication Bypass & Plaintext Credential Disclosure in TM2 Monitoring v3.04
+
+> **Discovered by:** Imraan Khan (Lich-Sec) / Etienne Supra  
+> **Vendor:** RT Systems  
+> **Product:** TM2 Monitoring  
+> **Version:** v3.04  
+> **Date Discovered:** July 2025  
+> **CVE Status:** [Submitted to MITRE – Pending Assignment]  
+> **Severity:** Critical (CVSS v3.1: 9.8)
+
+---
+
+## Disclaimer
+
+This vulnerability was discovered during a penetration test conducted for a client using the TM2 Monitoring System. The finding was identified during authorized internal testing within scope, and no exploitation beyond proof-of-concept was performed. This disclosure is made in the interest of responsible vulnerability reporting and improving overall software security.
+
+---
+
+## Summary
+
+TM2 Monitoring v3.04 is vulnerable to a **remote authentication bypass** and **plaintext credential disclosure** due to:
+
+- Reliance on **client-side JavaScript** for access control
+- Absence of **server-side session validation**
+- Exposure of **sensitive credentials** (`admin` and `user`) in unauthenticated HTML responses
+
+---
+
+## Technical Details
+
+### Affected Endpoint:
+  /security.php
+
+
+### Issue:
+An attacker can bypass login by directly requesting `/security.php` using a proxy like Burp Suite. The response reveals:
+
+```html
+<input name="pw_admin" value="REDACTED" type="text">
+<input name="pw_guest" value="REDACTED" type="text">
