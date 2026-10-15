@@ -87,7 +87,6 @@ A remote attacker who can reach the ASMX endpoint can run arbitrary SQL as the P
 | Date | Event |
 |------|--------|
 | 2026-09-02 | Vulnerability confirmed |
-| 2026-10-15 | Vendor (IDSC) notified |
 | Pending | CVE assignment / public record |
 
 ---
